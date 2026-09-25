@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f4f4f5;
+  --bg-2: #ececee;
+  --card: #ffffff;
+  --ink: #1a1a1a;
+  --mute: #5c5c5c;
+  --line: #dcdcdc;
+  --accent: #0369a1;
+  --accent-2: #4f46e5;
+  --btn-text: #ffffff;
+}
+
+.dark {
+  --bg: #1f1f1f;
+  --bg-2: #2a2a2a;
+  --card: #2f2f2f;
+  --ink: #f3f3f3;
+  --mute: #b4b4b4;
+  --line: #3f3f3f;
+  --accent: #7dd3fc;
+  --accent-2: #a5b4fc;
+  --btn-text: #1f1f1f;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-mute: var(--mute);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-btn-text: var(--btn-text);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--btn-text);
+}
+
+.hero-glow {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% -10%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 55%),
+    radial-gradient(ellipse 40% 40% at 90% 20%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 50%);
+}
+
+.premium-card {
+  position: relative;
+  isolation: isolate;
+  border-color: color-mix(in srgb, var(--line) 76%, var(--accent));
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--card) 94%, var(--accent)),
+    var(--card) 48%
+  );
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 4%),
+    0 10px 28px -20px color-mix(in srgb, var(--ink) 30%, transparent),
+    inset 0 1px 0 rgb(255 255 255 / 60%);
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.premium-card::before {
+  position: absolute;
+  inset: 0 16% auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 48%, transparent), transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.project-card img {
+  border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+  box-shadow: 0 8px 22px -18px color-mix(in srgb, var(--ink) 50%, transparent);
+  transition: transform 240ms ease;
+}
+
+.premium-card:hover,
+.premium-card:focus-within {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 58%, var(--line));
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--card) 84%, var(--accent)),
+    color-mix(in srgb, var(--card) 94%, var(--accent)) 48%
+  );
+  box-shadow:
+    0 2px 4px rgb(0 0 0 / 5%),
+    0 18px 34px -22px color-mix(in srgb, var(--accent) 48%, transparent),
+    inset 0 1px 0 rgb(255 255 255 / 70%);
+}
+
+@media (hover: hover) {
+  .project-card:hover img {
+    transform: scale(1.015);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-card,
+  .project-card img {
+    transition: none;
+  }
+}
