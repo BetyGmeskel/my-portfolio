@@ -6,7 +6,8 @@ export function ThemeToggle() {
   const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    setDark(document.documentElement.classList.contains("dark"));
+    const isDark = document.documentElement.classList.contains("dark");
+    setDark(isDark);
   }, []);
 
   function toggle() {
@@ -21,7 +22,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink transition hover:border-accent hover:text-accent"
+      className="grid h-9 w-9 place-items-center border-0 bg-transparent shadow-none ring-0 text-ink transition-colors hover:text-accent focus:ring-0"
     >
       {dark ? (
         <svg

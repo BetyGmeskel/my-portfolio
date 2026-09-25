@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
@@ -18,9 +19,22 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-line/80 bg-bg/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
         <a href="#top" className="flex items-center gap-2 font-semibold">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-accent to-accent-2 text-sm text-btn-text">
-            BG
-          </span>
+          <Image
+            src="/logo-light-v2.png"
+            alt="Bety Gebremeskel logo"
+            width={40}
+            height={40}
+            priority
+            className="h-10 w-10 rounded-lg object-cover dark:hidden"
+          />
+          <Image
+            src="/logo-dark.png"
+            alt="Bety Gebremeskel logo"
+            width={40}
+            height={40}
+            priority
+            className="hidden h-10 w-10 rounded-lg object-cover dark:block"
+          />
           <span className="hidden sm:inline">Bety Gebremeskel</span>
         </a>
         <div className="flex items-center gap-4">
